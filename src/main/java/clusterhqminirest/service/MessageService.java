@@ -2,7 +2,10 @@ package clusterhqminirest.service;
 
 import clusterhqminirest.domain.Topic;
 import clusterhqminirest.domain.User;
-import restx.factory.Component;
+import clusterhqminirest.exceptions.MgsSvcUserDoesNotExistException;
+import clusterhqminirest.exceptions.MsgSvcException;
+import clusterhqminirest.exceptions.MsgSvcSubscriptionDoesNotExist;
+import clusterhqminirest.exceptions.MsgSvcTopicDoesNotExist;
 
 import java.util.*;
 
@@ -84,23 +87,22 @@ public class MessageService {
      * @param user
      * @return
      */
-    public int unsuscribeToTopic(String topic, String user)
+    public void unsubscribeToTopic(String topic, String user) throws MsgSvcException
     {
         if(topicsMap.containsKey(topic))
         {
-            if( !topicsMap.get(topic).unsuscribeUser(user))
+            if( !topicsMap.get(topic).unsubscribeUser(user))
             {
-                return -1;
+                throw new MsgSvcSubscriptionDoesNotExist(user, topic);
             }
         }
         if(usersMap.containsKey(user))
         {
             if(!usersMap.get(user).removeTopic(topic))
             {
-                return -2;
+                throw new MsgSvcSubscriptionDoesNotExist(user, topic);
             }
         }
-        return 0;
     }
 
     /**
@@ -109,32 +111,43 @@ public class MessageService {
      * @param user
      * @return
      */
-    public String getMessage(String topic, String user)
+    public String getMessage(String topic, String user) throws MsgSvcException
     {
 
         //Sanity check
         Topic currentTopic = topicsMap.get(topic);
         if(currentTopic == null)
         {
-            // TODO throw exceptionreturn -1;
+            throw new MsgSvcTopicDoesNotExist();
         }
         if(!currentTopic.getUsers().contains(user))
         {
-            // TODO throw exceptionreturn -2;
+            throw new MgsSvcUserDoesNotExistException();
         }
 
         //Get message
         User currentUser = usersMap.get(user);
         if(currentUser == null )
         {
-            // TODO throw exceptionreturn -3;
+            throw new MgsSvcUserDoesNotExistException();
         }
         if(!currentUser.isSuscribed(topic))
         {
-            // TODO throw exception return -4
+            throw new MsgSvcSubscriptionDoesNotExist(user, topic);
         }
         return currentUser.popNextMessage(topic);
+    }
 
+    public void sendMessage (String topic, String message)
+    {
+        Topic currentTopic = this.getTopic(topic);
+        if(currentTopic != null)
+        {
+            for( String user: currentTopic.getUsers())
+            {
+                this.getUser(user).addMessage(topic,message);
+            }
+        }
     }
 
 }

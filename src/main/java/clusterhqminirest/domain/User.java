@@ -81,7 +81,7 @@ public class User {
     }
     public String popNextMessage(String topic)
     {
-        return messages.get(new Topic(topic)).peek();
+        return messages.get(topic).poll();
     }
 
     public void addMessage(String topic, String message) {

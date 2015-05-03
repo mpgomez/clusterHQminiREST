@@ -32,12 +32,12 @@ public class Topic
         users.add(user.getUserName());
     }
 
-    public boolean unsuscribeUser(String user)
+    public boolean unsubscribeUser(String user)
     {
-        return unsuscribeUser(new User(user));
+        return unsubscribeUser(new User(user));
     }
 
-    public boolean unsuscribeUser(User user)
+    public boolean unsubscribeUser(User user)
     {
         return users.remove(user);
     }

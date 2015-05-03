@@ -1,18 +1,15 @@
 package clusterhqminirest.rest;
 
-import clusterhqminirest.AppModule;
 import clusterhqminirest.ServiceModule;
+import clusterhqminirest.domain.Message;
 import clusterhqminirest.service.MessageService;
-import org.joda.time.DateTime;
+import restx.RestxResponse;
+import restx.annotations.DELETE;
 import restx.annotations.GET;
+import restx.annotations.POST;
 import restx.annotations.RestxResource;
 import restx.factory.Component;
-import restx.factory.Factory;
-import restx.security.RestxSession;
-import restx.security.RolesAllowed;
-
-import javax.inject.Named;
-import javax.xml.ws.Service;
+import restx.http.HttpStatus;
 
 /**
  * Created by dreamer on 03/05/15.
@@ -46,6 +43,33 @@ public class MyResource
     {
         service.subscribeToTopic("topic1","user2");
         return "User 2 createrd";
+    }
+
+    @POST("/miniREST/{topic}/{username}")
+    public String subscribeToTopic(String topic, String username)
+    {
+        service.subscribeToTopic(topic,username);
+        return "Subscription succeeded.";
+    }
+
+    @GET("/miniREST/{topic}/{username}")
+    public String getNextMessage(String topic, String username)
+    {
+        return service.getMessage(topic, username);
+    }
+
+    @DELETE("/miniREST/{topic}/{username}")
+    public String unsubscribeToTopic(String topic, String username)
+    {
+        service.unsubscribeToTopic(topic, username);
+        return "";
+    }
+
+    @POST("/miniREST/{topic}/")
+    public String subscrubeToTopic(String topic, Message msg)
+    {
+        service.sendMessage(topic,msg.getValue());
+        return "";
     }
 
 }
