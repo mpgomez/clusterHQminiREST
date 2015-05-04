@@ -6,7 +6,9 @@ import restx.http.HttpStatus;
  * Subtype of the message service exception that will be thrown when the queue message is empty.
  * Note that here we are setting a 204, but the error handling and dealing with HTTP codes in the
  * restx framework is a bit dodgy, so exceptions are being used here as a workaround to return the appropiate HTTP status
- * - Workaround works (ish; the message is lost)
+ * - Workaround works (ish; the message is lost), but it makes the tests fail, as it throws an exception. 204 is an error
+ * from the family of the 200, meaning that everything was OK, so when that is inside an exception,
+ * the framework complains
 
  * Created by dreamer on 03/05/15.
  */

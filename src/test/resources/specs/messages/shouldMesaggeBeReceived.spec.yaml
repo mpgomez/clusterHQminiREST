@@ -21,4 +21,5 @@ wts:
   - when: |
       GET miniREST/Flags/Sarge
     then: |
-      204
+      200
+      There are no messages available for this topic on this user.

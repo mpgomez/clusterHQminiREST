@@ -42,7 +42,12 @@ public class MessageResource
     @PermitAll
     public String getNextMessage(String topic, String username)
     {
-        return service.getMessage(topic, username);
+        String msg = service.getMessage(topic,username);
+        if(msg == null)
+        {
+            msg = "There are no messages available for this topic on this user.";
+        }
+        return msg;
     }
 
     @DELETE("/miniREST/{topic}/{username}")

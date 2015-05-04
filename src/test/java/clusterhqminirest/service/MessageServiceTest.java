@@ -1,10 +1,11 @@
-package test.service;
+package clusterhqminirest.service;
 
 import clusterhqminirest.domain.Topic;
 import clusterhqminirest.domain.User;
 import clusterhqminirest.exceptions.*;
 import clusterhqminirest.service.MessageService;
 import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  * Created by dreamer on 04/05/15.
@@ -63,7 +64,7 @@ public class MessageServiceTest extends TestCase
         srv.sendMessage(topic2, topic2_message2);
     }
 
-
+    @Test
     public void testGetUser_positive() throws Exception
     {
         setupService();
@@ -73,6 +74,7 @@ public class MessageServiceTest extends TestCase
         assertEquals(expectedUser, service.getUser(user3));
     }
 
+    @Test
     public void testGetUser_negative() throws Exception
     {
         setupService();

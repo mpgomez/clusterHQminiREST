@@ -1,0 +1,9 @@
+title: user should not unsubscribe
+given:
+  - time: 2013-08-28T01:18:00.822+02:00
+wts:
+  - when: |
+      GET miniREST/Sarge/Flags
+    then: |
+      404
+      { "message": "The subscription does not exist."}

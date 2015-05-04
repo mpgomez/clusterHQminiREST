@@ -154,13 +154,13 @@ public class MessageService {
             throw new MsgSvcSubscriptionDoesNotExist();
         }
         nextMessage = currentUser.popNextMessage(topic);
-        if(nextMessage == null)
-        {
-            //TODO: this shouldn't be an exception: any return value of the family 200
-            //is a success.
-            logger.warn("getMessage:Messages queue for user " + user + " and topic "+ topic + " is empty");
-            throw new MsgSvcMessageQueueEmpty();
-        }
+//        if(nextMessage == null)
+//        {
+//            //TODO: this shouldn't be an exception: any return value of the family 200
+//            //is a success.
+//            logger.warn("getMessage:Messages queue for user " + user + " and topic "+ topic + " is empty");
+//            throw new MsgSvcMessageQueueEmpty();
+//        }
         return nextMessage;
     }
 
