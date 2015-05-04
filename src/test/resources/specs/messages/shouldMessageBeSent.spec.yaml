@@ -1,0 +1,10 @@
+title: should message be sent
+given:
+  - time: 2013-08-28T01:18:00.822+02:00
+wts:
+  - when: |
+      POST miniREST/Flags
+      {"value":"I found a flag"}
+    then: |
+      200
+      Publish succeeded.

@@ -9,6 +9,11 @@ public class MsgSvcTopicDoesNotExist extends MsgSvcException
 {
     public MsgSvcTopicDoesNotExist()
     {
-        super(HttpStatus.NOT_FOUND, "Topic does not exist");
+        super(HttpStatus.NOT_FOUND, "The subscription does not exist.");
+    }
+
+    public MsgSvcTopicDoesNotExist(String topic)
+    {
+        super(HttpStatus.NOT_FOUND, "The topic " + topic + " does not exist.");
     }
 }

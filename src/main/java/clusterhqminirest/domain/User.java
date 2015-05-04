@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.Queue;
 
 /**
+ * Class that represents a user.
+ * It will also contain a queue of messages organized by topic, and
+ * methods to access the messages by topic, and add messages by top
  * Created by dreamer on 29/04/15.
  */
 public class User {

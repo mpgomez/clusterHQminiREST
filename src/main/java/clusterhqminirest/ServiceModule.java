@@ -2,11 +2,10 @@ package clusterhqminirest;
 
 import clusterhqminirest.service.MessageService;
 import restx.factory.Component;
-import restx.factory.Module;
 import restx.factory.Provides;
-import restx.server.WebServer;
 
 /**
+ * This component allows REST to access the message service instance.
  * Created by dreamer on 03/05/15.
  */
 @Component

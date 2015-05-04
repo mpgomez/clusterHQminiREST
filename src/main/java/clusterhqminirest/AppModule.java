@@ -9,7 +9,6 @@ import com.google.common.base.Charsets;
 import com.google.common.collect.ImmutableSet;
 import restx.security.*;
 import restx.factory.Module;
-import restx.factory.Provides;
 import javax.inject.Named;
 
 import java.nio.file.Paths;

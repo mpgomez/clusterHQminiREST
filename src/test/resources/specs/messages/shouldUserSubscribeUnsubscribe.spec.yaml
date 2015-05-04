@@ -1,0 +1,14 @@
+title: should user subscribe and unsubscribe
+given:
+  - time: 2013-08-28T01:18:00.822+02:00
+wts:
+  - when: |
+      POST miniREST/Sarge/Flags
+    then: |
+      200
+      Subscription succeeded.
+  - when: |
+      DELETE miniREST/Sarge/Flags
+    then: |
+      200
+      Unsubscribe succeeded.

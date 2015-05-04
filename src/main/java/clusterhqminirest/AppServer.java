@@ -2,7 +2,6 @@ package clusterhqminirest;
 
 import clusterhqminirest.service.MessageService;
 import com.google.common.base.Optional;
-import restx.factory.Factory;
 import restx.server.WebServer;
 import restx.server.JettyWebServer;
 

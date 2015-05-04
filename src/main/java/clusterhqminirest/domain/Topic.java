@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * This class represents a topic.
+ * It also contains a list of user subscribed to it,
+ * and methods to subscribe/unsubscribe a user from the topic
  * Created by dreamer on 29/04/15.
  */
 public class Topic
@@ -34,12 +37,12 @@ public class Topic
 
     public boolean unsubscribeUser(String user)
     {
-        return unsubscribeUser(new User(user));
+        return users.remove(user);
     }
 
     public boolean unsubscribeUser(User user)
     {
-        return users.remove(user);
+        return unsubscribeUser(user.getUserName());
     }
 
 
